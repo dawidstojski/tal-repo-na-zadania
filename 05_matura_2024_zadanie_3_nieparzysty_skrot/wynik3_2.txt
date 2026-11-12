@@ -1,0 +1,29 @@
+def skrot(n):
+    wynik = 0
+    mnoznik = 1
+    liczby_bez_skrotu = 0
+    maksymalna_liczba = 0
+    while n > 0:
+        cyfra = n % 10
+        if cyfra % 2 == 1:
+            wynik += cyfra * mnoznik
+            mnoznik *= 10
+            n //= 10
+        elif cyfra % 2 == 0:
+            wynik += cyfra * mnoznik
+            mnoznik *= 10
+            liczby_bez_skrotu += 1
+            maksymalna_liczba = max(cyfra)
+            n//= 10
+            
+           
+            
+        return wynik, liczby_bez_skrotu , maksymalna_liczba
+with open("skrot.txt", "r", encoding="utf-8") as plik:
+    for linia in plik:
+        liczba = int(linia.strip())
+        wynik, liczby_bez_skrotu, maksymalna_liczba = skrot(liczba)
+        print(f"Liczba: {liczba}")
+        print(f"Skrot: {wynik}")
+        print(f"Liczby bez skrotu: {liczby_bez_skrotu}")
+        print(f"Maksymalna liczba: {maksymalna_liczba}")
